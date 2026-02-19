@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>令和8年度 徳島県公立高校 一般選抜出願状況</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf8f5;
+      --card: #ffffff;
+      --text: #2c2c2c;
+      --sub: #666;
+      --accent: #b8432f;
+      --accent2: #1a5c3a;
+      --border: #d5cfc7;
+      --header-bg: #f0ece6;
+      --table-stripe: #f7f5f1;
+      --blue: #2d5a8c;
+      --warn: #c47800;
+      --safe: #1a7a45;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      font-size: 15px;
+      font-weight: 300;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .container.wide {
+      max-width: 1100px;
+    }
+
+    /* ===== ヘッダー ===== */
+    .page-header {
+      text-align: center;
+      padding: 40px 20px 30px;
+      border-bottom: 3px double var(--accent);
+      margin-bottom: 30px;
+    }
+
+    .page-header h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+    }
+
+    .page-header .date-line {
+      font-size: 0.85rem;
+      color: var(--sub);
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== 表示切替 ===== */
+    .view-toggle {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 24px;
+    }
+
+    .view-toggle button {
+      padding: 8px 24px;
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--sub);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.82rem;
+      transition: all 0.2s;
+      letter-spacing: 0.05em;
+    }
+
+    .view-toggle button:first-child {
+      border-radius: 4px 0 0 4px;
+    }
+
+    .view-toggle button:last-child {
+      border-radius: 0 4px 4px 0;
+      border-left: none;
+    }
+
+    .view-toggle button.active {
+      background: var(--text);
+      color: #fff;
+      border-color: var(--text);
+    }
+
+    /* ===== 日程バナー ===== */
+    .schedule {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      margin-bottom: 28px;
+      font-size: 0.85rem;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .schedule strong {
+      color: var(--accent);
+    }
+
+    .schedule .dates {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      margin-top: 6px;
+    }
+
+    .schedule .dates span {
+      white-space: nowrap;
+    }
+
+    .schedule .dates span::before {
+      content: '▸ ';
+      color: var(--accent);
+      font-size: 0.7em;
+    }
+
+    /* ===== セクション ===== */
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      margin-bottom: 24px;
+      border-radius: 3px;
+    }
+
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 12px 18px;
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      letter-spacing: 0.05em;
+    }
+
+    .section-body {
+      padding: 18px;
+    }
+
+    .section-body h3 {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--blue);
+      margin: 18px 0 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px dotted var(--border);
+    }
+
+    .section-body h3:first-child {
+      margin-top: 0;
+    }
+
+    /* ===== 概要カード ===== */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .ov-card {
+      border: 1px solid var(--border);
+      padding: 14px;
+      text-align: center;
+      border-radius: 3px;
+      background: var(--bg);
+    }
+
+    .ov-card .label {
+      font-size: 0.78rem;
+      color: var(--sub);
+      margin-bottom: 4px;
+    }
+
+    .ov-card .num {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+    }
+
+    .ov-card .detail {
+      font-size: 0.75rem;
+      color: var(--sub);
+      margin-top: 2px;
+    }
+
+    .ov-card.this-year .num {
+      color: var(--accent);
+    }
+
+    .ov-card.last-year .num {
+      color: var(--blue);
+    }
+
+    .ov-card.two-years .num {
+      color: var(--accent2);
+    }
+
+    /* ===== テーブル ===== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      margin: 8px 0;
+    }
+
+    th {
+      background: var(--header-bg);
+      font-weight: 500;
+      padding: 8px 6px;
+      text-align: center;
+      border: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--sub);
+      letter-spacing: 0.03em;
+    }
+
+    td {
+      padding: 6px;
+      text-align: center;
+      border: 1px solid #e5e0d8;
+      vertical-align: middle;
+    }
+
+    tr:nth-child(even) td {
+      background: var(--table-stripe);
+    }
+
+    td.school {
+      text-align: left;
+      font-weight: 500;
+    }
+
+    .high {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .low {
+      color: var(--safe);
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      padding: 1px 6px;
+      border-radius: 2px;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    .tag-danger {
+      background: #f8e8e5;
+      color: var(--accent);
+      border: 1px solid #e8ccc7;
+    }
+
+    .tag-warn {
+      background: #fdf2de;
+      color: var(--warn);
+      border: 1px solid #edd8a8;
+    }
+
+    .tag-safe {
+      background: #e4f2ea;
+      color: var(--safe);
+      border: 1px solid #b8dcc5;
+    }
+
+    td.left {
+      text-align: left;
+    }
+
+    /* ===== コメント ===== */
+    .note {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 12px 16px;
+      margin: 12px 0;
+      font-size: 0.84rem;
+      line-height: 1.7;
+      border-radius: 2px;
+    }
+
+    .note-title {
+      font-weight: 500;
+      color: var(--blue);
+      margin-bottom: 4px;
+      font-size: 0.82rem;
+    }
+
+    .note.caution {
+      border-left: 3px solid var(--warn);
+    }
+
+    .note.caution .note-title {
+      color: var(--warn);
+    }
+
+    .note.alert {
+      border-left: 3px solid var(--accent);
+    }
+
+    .note.alert .note-title {
+      color: var(--accent);
+    }
+
+    .note ul {
+      padding-left: 1.2em;
+      margin-top: 4px;
+    }
+
+    .note li {
+      margin-bottom: 3px;
+    }
+
+    /* ===== フッター ===== */
+    footer {
+      margin-top: 40px;
+      padding: 20px 0;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--sub);
+      text-align: center;
+      line-height: 1.9;
+    }
+
+    /* ===== モバイル ===== */
+    .mobile-only {
+      display: none;
+    }
+
+    body.mobile-view .pc-only {
+      display: none;
+    }
+
+    body.mobile-view .mobile-only {
+      display: block;
+    }
+
+    body.mobile-view .container {
+      max-width: 480px;
+      padding: 10px;
+    }
+
+    body.mobile-view .page-header {
+      padding: 24px 10px 18px;
+    }
+
+    body.mobile-view .page-header h1 {
+      font-size: 1.15rem;
+    }
+
+    body.mobile-view .overview-grid {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    body.mobile-view .section-body {
+      padding: 12px;
+      overflow-x: auto;
+    }
+
+    body.mobile-view table {
+      font-size: 0.72rem;
+      min-width: 500px;
+    }
+
+    body.mobile-view .schedule {
+      font-size: 0.8rem;
+    }
+
+    body.mobile-view .note {
+      font-size: 0.8rem;
+    }
+
+    body.mobile-view .section-title {
+      font-size: 0.9rem;
+      padding: 10px 14px;
+    }
+
+    body.mobile-view .view-toggle {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--bg);
+      padding: 8px 0;
+    }
+
+    /* 小さな画面は自動mobile */
+    @media (max-width: 640px) {
+      .overview-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-body {
+        overflow-x: auto;
+      }
+
+      table {
+        min-width: 520px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="page-header">
+      <h1>令和８年度　徳島県公立高等学校<br>一般選抜　出願状況</h1>
+      <p class="date-line">令和８年２月１８日現在（志願変更前）</p>
+      <p class="date-line" style="font-size:0.85em; margin-top:4px;">出典：<a
+          href="https://nyuushi.tokushima-ec.ed.jp/hs_R8/R8kouhyou" target="_blank" rel="noopener"
+          style="color:var(--blue); text-decoration:underline;">徳島県教育委員会</a></p>
+    </div>
+
+    <div class="view-toggle">
+      <button class="active" onclick="setView('pc')">PC表示</button>
+      <button onclick="setView('mobile')">モバイル表示</button>
+    </div>
+
+    <div class="schedule">
+      <strong>今後の日程</strong>
+      <div class="dates">
+        <span>志願変更　2/24(火)～2/26(木)</span>
+        <span>学力検査　3/3(火)</span>
+        <span>面接等　3/4(水)</span>
+        <span>合格発表　3/13(金)</span>
+      </div>
+    </div>
+
+    <!-- ===== 全体概要 ===== -->
+    <div class="section">
+      <div class="section-title">全体概要 ─ ３年間の推移</div>
+      <div class="section-body">
+        <div class="overview-grid">
+          <div class="ov-card this-year">
+            <div class="label">令和8年度（2026）</div>
+            <div class="num">1.00<small style="font-size:0.5em">倍</small></div>
+            <div class="detail">募集 4,164 ／ 出願 4,166</div>
+          </div>
+          <div class="ov-card last-year">
+            <div class="label">令和7年度（2025）</div>
+            <div class="num">0.99<small style="font-size:0.5em">倍</small></div>
+            <div class="detail">募集 4,102 ／ 出願 4,062</div>
+          </div>
+          <div class="ov-card two-years">
+            <div class="label">令和6年度（2024）</div>
+            <div class="num">1.01<small style="font-size:0.5em">倍</small></div>
+            <div class="detail">募集 4,211 ／ 出願 4,235</div>
+          </div>
+        </div>
+        <div class="note">
+          <div class="note-title">総評</div>
+          令和8年度の全体倍率は1.00倍で、昨年度（0.99倍）からわずかに回復。R6→R7→R8と3年間ほぼ横ばいで推移しており、募集人員と出願者数が拮抗した状況が続いています。
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 注目校 ===== -->
+    <div class="section">
+      <div class="section-title">注目校 ─ 高倍率の学科</div>
+      <div class="section-body">
+        <table>
+          <thead>
+            <tr>
+              <th>学校</th>
+              <th>学科</th>
+              <th>募集</th>
+              <th>出願</th>
+              <th>倍率</th>
+              <th>状況</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="school">吉野川</td>
+              <td>農業科学</td>
+              <td>12</td>
+              <td>18</td>
+              <td class="high">1.50</td>
+              <td><span class="tag tag-danger">激戦</span></td>
+            </tr>
+            <tr>
+              <td class="school">城西</td>
+              <td>生産技術</td>
+              <td>18</td>
+              <td>25</td>
+              <td class="high">1.39</td>
+              <td><span class="tag tag-danger">激戦</span></td>
+            </tr>
+            <tr>
+              <td class="school">徳島科学技術</td>
+              <td>海洋科学類</td>
+              <td>10</td>
+              <td>13</td>
+              <td class="high">1.30</td>
+              <td><span class="tag tag-danger">激戦</span></td>
+            </tr>
+            <tr>
+              <td class="school">阿南光</td>
+              <td>都市環境システム</td>
+              <td>25</td>
+              <td>31</td>
+              <td class="high">1.24</td>
+              <td><span class="tag tag-warn">注意</span></td>
+            </tr>
+            <tr>
+              <td class="school">鳴門渦潮</td>
+              <td>総合</td>
+              <td>108</td>
+              <td>130</td>
+              <td class="high">1.20</td>
+              <td><span class="tag tag-warn">注意</span></td>
+            </tr>
+            <tr>
+              <td class="school">城西</td>
+              <td>植物活用</td>
+              <td>20</td>
+              <td>24</td>
+              <td class="high">1.20</td>
+              <td><span class="tag tag-warn">注意</span></td>
+            </tr>
+            <tr>
+              <td class="school">阿南光</td>
+              <td>産業創造</td>
+              <td>64</td>
+              <td>75</td>
+              <td class="high">1.17</td>
+              <td><span class="tag tag-warn">注意</span></td>
+            </tr>
+            <tr>
+              <td class="school">板野</td>
+              <td>普通</td>
+              <td>118</td>
+              <td>137</td>
+              <td class="high">1.16</td>
+              <td><span class="tag tag-warn">注意</span></td>
+            </tr>
+            <tr>
+              <td class="school">城西</td>
+              <td>食品科学</td>
+              <td>24</td>
+              <td>27</td>
+              <td>1.13</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="school">城西</td>
+              <td>アグリビジネス</td>
+              <td>24</td>
+              <td>27</td>
+              <td>1.13</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="school">小松島西</td>
+              <td>福祉</td>
+              <td>30</td>
+              <td>34</td>
+              <td>1.13</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="school">阿南光</td>
+              <td>機械ロボットシステム</td>
+              <td>25</td>
+              <td>28</td>
+              <td>1.12</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="school">富岡東</td>
+              <td>商業</td>
+              <td>17</td>
+              <td>19</td>
+              <td>1.12</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="school">穴吹</td>
+              <td>普通</td>
+              <td>38</td>
+              <td>42</td>
+              <td>1.11</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note caution">
+          <div class="note-title">⚠ 志願変更に関する注意点</div>
+          吉野川・農業科学（1.50倍）は定員12名と少数のため、わずか数名の移動で大きく倍率が変動します。1.3倍を超える学科は志願変更期間中に敬遠の動きが出る傾向があります。
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 定員割れ ===== -->
+    <div class="section">
+      <div class="section-title">定員割れの学科</div>
+      <div class="section-body">
+        <table>
+          <thead>
+            <tr>
+              <th>学校</th>
+              <th>学科</th>
+              <th>募集</th>
+              <th>出願</th>
+              <th>倍率</th>
+              <th>状況</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="school">池田・三好</td>
+              <td>環境資源</td>
+              <td>15</td>
+              <td>4</td>
+              <td class="low">0.27</td>
+              <td><span class="tag tag-safe">大幅割れ</span></td>
+            </tr>
+            <tr>
+              <td class="school">小松島西・勝浦</td>
+              <td>園芸福祉</td>
+              <td>13</td>
+              <td>6</td>
+              <td class="low">0.46</td>
+              <td><span class="tag tag-safe">大幅割れ</span></td>
+            </tr>
+            <tr>
+              <td class="school">富岡西</td>
+              <td>理数</td>
+              <td>30</td>
+              <td>18</td>
+              <td class="low">0.60</td>
+              <td><span class="tag tag-safe">割れ</span></td>
+            </tr>
+            <tr>
+              <td class="school">池田・辻</td>
+              <td>総合</td>
+              <td>41</td>
+              <td>25</td>
+              <td class="low">0.61</td>
+              <td><span class="tag tag-safe">割れ</span></td>
+            </tr>
+            <tr>
+              <td class="school">城南</td>
+              <td>応用数理</td>
+              <td>28</td>
+              <td>21</td>
+              <td class="low">0.75</td>
+              <td><span class="tag tag-safe">割れ</span></td>
+            </tr>
+            <tr>
+              <td class="school">阿波西</td>
+              <td>普通</td>
+              <td>20</td>
+              <td>15</td>
+              <td class="low">0.75</td>
+              <td><span class="tag tag-safe">割れ</span></td>
+            </tr>
+            <tr>
+              <td class="school">池田</td>
+              <td>普通</td>
+              <td>101</td>
+              <td>78</td>
+              <td class="low">0.77</td>
+              <td><span class="tag tag-safe">割れ</span></td>
+            </tr>
+            <tr>
+              <td class="school">城北</td>
+              <td>理数科学</td>
+              <td>27</td>
+              <td>21</td>
+              <td class="low">0.78</td>
+              <td><span class="tag tag-safe">割れ</span></td>
+            </tr>
+            <tr>
+              <td class="school">海部</td>
+              <td>数理科学</td>
+              <td>28</td>
+              <td>22</td>
+              <td class="low">0.79</td>
+              <td><span class="tag tag-safe">割れ</span></td>
+            </tr>
+            <tr>
+              <td class="school">徳島市立</td>
+              <td>理数</td>
+              <td>40</td>
+              <td>32</td>
+              <td class="low">0.80</td>
+              <td><span class="tag tag-safe">割れ</span></td>
+            </tr>
+            <tr>
+              <td class="school">吉野川</td>
+              <td>会計ビジネス</td>
+              <td>20</td>
+              <td>16</td>
+              <td class="low">0.80</td>
+              <td><span class="tag tag-safe">割れ</span></td>
+            </tr>
+            <tr>
+              <td class="school">富岡東</td>
+              <td>普通</td>
+              <td>73</td>
+              <td>59</td>
+              <td class="low">0.81</td>
+              <td><span class="tag tag-safe">割れ</span></td>
+            </tr>
+            <tr>
+              <td class="school">つるぎ</td>
+              <td>建設</td>
+              <td>15</td>
+              <td>13</td>
+              <td class="low">0.87</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="school">徳島科学技術</td>
+              <td>電気技術類</td>
+              <td>53</td>
+              <td>46</td>
+              <td class="low">0.87</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="school">徳島科学技術</td>
+              <td>海洋技術類</td>
+              <td>18</td>
+              <td>16</td>
+              <td class="low">0.89</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="school">徳島北</td>
+              <td>国際英語</td>
+              <td>38</td>
+              <td>35</td>
+              <td class="low">0.92</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note">
+          <div class="note-title">所感</div>
+          理数系専門学科（城南・応用数理/城北・理数科学/富岡東・理数/徳島市立・理数）が軒並み定員割れしており、3年連続の傾向です。定員割れ学科は志願変更期間中に流入先となる可能性があります。
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 主要普通科 ===== -->
+    <div class="section">
+      <div class="section-title">主要普通科 ─ ３年間の倍率推移</div>
+      <div class="section-body">
+        <table>
+          <thead>
+            <tr>
+              <th rowspan="2">学校</th>
+              <th>R8</th>
+              <th colspan="2">R7（2025）</th>
+              <th colspan="2">R6（2024）</th>
+              <th rowspan="2">傾向</th>
+            </tr>
+            <tr>
+              <th>出願時</th>
+              <th>出願時</th>
+              <th>確定</th>
+              <th>出願時</th>
+              <th>確定</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="school">城東・普通</td>
+              <td>0.97</td>
+              <td>0.99</td>
+              <td>1.02</td>
+              <td>1.00</td>
+              <td>─</td>
+              <td>やや低下</td>
+            </tr>
+            <tr>
+              <td class="school">城南・普通</td>
+              <td>1.05</td>
+              <td>─</td>
+              <td>1.06</td>
+              <td>1.06</td>
+              <td>1.06</td>
+              <td>安定</td>
+            </tr>
+            <tr>
+              <td class="school">城北・普通</td>
+              <td>1.06</td>
+              <td>─</td>
+              <td>1.09</td>
+              <td>─</td>
+              <td>─</td>
+              <td>やや低下</td>
+            </tr>
+            <tr>
+              <td class="school">徳島北・普通</td>
+              <td>1.01</td>
+              <td>─</td>
+              <td>1.10</td>
+              <td>1.02</td>
+              <td>─</td>
+              <td>低下</td>
+            </tr>
+            <tr>
+              <td class="school">徳島市立・普通</td>
+              <td>1.03</td>
+              <td>─</td>
+              <td>─</td>
+              <td>─</td>
+              <td>1.08</td>
+              <td>低下</td>
+            </tr>
+            <tr>
+              <td class="school">鳴門・普通</td>
+              <td>1.01</td>
+              <td>─</td>
+              <td>─</td>
+              <td>─</td>
+              <td>─</td>
+              <td>─</td>
+            </tr>
+            <tr>
+              <td class="school">板野・普通</td>
+              <td class="high">1.16</td>
+              <td>─</td>
+              <td>─</td>
+              <td>─</td>
+              <td>─</td>
+              <td>高倍率</td>
+            </tr>
+            <tr>
+              <td class="school">小松島・普通</td>
+              <td>1.01</td>
+              <td>─</td>
+              <td>─</td>
+              <td>─</td>
+              <td>─</td>
+              <td>─</td>
+            </tr>
+            <tr>
+              <td class="school">阿波・普通</td>
+              <td>1.00</td>
+              <td>─</td>
+              <td>─</td>
+              <td>─</td>
+              <td>─</td>
+              <td>─</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note caution">
+          <div class="note-title">⚠ 志願変更の影響予測</div>
+          <ul>
+            <li><strong>城東・普通（0.97倍）</strong>：定員割れ。昨年は志願変更後に1.02倍まで上昇しています。今年も流入の可能性あり。</li>
+            <li><strong>徳島北・普通（1.01倍）</strong>：昨年は確定時に1.10倍まで大幅上昇。同様の動きに注意。</li>
+            <li><strong>板野・普通（1.16倍）</strong>：高倍率のため一部が近隣の同レベル帯の他校へ志願変更する可能性あり。</li>
+            <li><strong>城南・普通（1.05倍）</strong>：3年間安定して1.05〜1.06倍を維持。志願変更の影響は小さいと予測。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 全日制一覧 ===== -->
+    <div class="section">
+      <div class="section-title">全日制課程 ─ 全校一覧</div>
+      <div class="section-body">
+        <table>
+          <thead>
+            <tr>
+              <th>学校</th>
+              <th>学科・類</th>
+              <th>募集</th>
+              <th>出願</th>
+              <th>倍率</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="school">城東</td>
+              <td>普通</td>
+              <td>251</td>
+              <td>243</td>
+              <td>0.97</td>
+            </tr>
+            <tr>
+              <td class="school" rowspan="2">城南</td>
+              <td>普通</td>
+              <td>210</td>
+              <td>220</td>
+              <td>1.05</td>
+            </tr>
+            <tr>
+              <td>応用数理</td>
+              <td>28</td>
+              <td>21</td>
+              <td class="low">0.75</td>
+            </tr>
+            <tr>
+              <td class="school" rowspan="2">城北</td>
+              <td>普通</td>
+              <td>217</td>
+              <td>230</td>
+              <td>1.06</td>
+            </tr>
+            <tr>
+              <td>理数科学</td>
+              <td>27</td>
+              <td>21</td>
+              <td class="low">0.78</td>
+            </tr>
+            <tr>
+              <td class="school" rowspan="2">徳島北</td>
+              <td>普通</td>
+              <td>214</td>
+              <td>216</td>
+              <td>1.01</td>
+            </tr>
+            <tr>
+              <td>国際英語</td>
+              <td>38</td>
+              <td>35</td>
+              <td class="low">0.92</td>
+            </tr>
+            <tr>
+              <td class="school" rowspan="2">徳島市立</td>
+              <td>普通</td>
+              <td>248</td>
+              <td>255</td>
+              <td>1.03</td>
+            </tr>
+            <tr>
+              <td>理数</td>
+              <td>40</td>
+              <td>32</td>
+              <td class="low">0.80</td>
+            </tr>
+            <tr>
+              <td class="school" rowspan="5">城西</td>
+              <td>生産技術</td>
+              <td>18</td>
+              <td>25</td>
+              <td class="high">1.39</td>
+            </tr>
+            <tr>
+              <td>植物活用</td>
+              <td>20</td>
+              <td>24</td>
+              <td>1.20</td>
+            </tr>
+            <tr>
+              <td>食品科学</td>
+              <td>24</td>
+              <td>27</td>
+              <td>1.13</td>
+            </tr>
+            <tr>
+              <td>アグリビジネス</td>
+              <td>24</td>
+              <td>27</td>
+              <td>1.13</td>
+            </tr>
+            <tr>
+              <td>総合</td>
+              <td>62</td>
+              <td>77</td>
+              <td class="high">1.24</td>
+            </tr>
+            <tr>
+              <td class="school">城西・神山</td>
+              <td>地域創生類</td>
+              <td>26</td>
+              <td>26</td>
+              <td>1.00</td>
+            </tr>
+            <tr>
+              <td class="school" rowspan="6">徳島科学技術</td>
+              <td>総合科学類</td>
+              <td>54</td>
+              <td>57</td>
+              <td>1.06</td>
+            </tr>
+            <tr>
+              <td>機械技術類</td>
+              <td>56</td>
+              <td>52</td>
+              <td class="low">0.93</td>
+            </tr>
+            <tr>
+              <td>電気技術類</td>
+              <td>53</td>
+              <td>46</td>
+              <td class="low">0.87</td>
+            </tr>
+            <tr>
+              <td>建設技術類</td>
+              <td>62</td>
+              <td>58</td>
+              <td class="low">0.94</td>
+            </tr>
+            <tr>
+              <td>海洋科学類</td>
+              <td>10</td>
+              <td>13</td>
+              <td class="high">1.30</td>
+            </tr>
+            <tr>
+              <td>海洋技術類</td>
+              <td>18</td>
+              <td>16</td>
+              <td class="low">0.89</td>
+            </tr>
+            <tr>
+              <td class="school" rowspan="2">徳島商業</td>
+              <td>ビジネス探究</td>
+              <td>56</td>
+              <td>57</td>
+              <td>1.02</td>
+            </tr>
+            <tr>
+              <td>ビジネス創造</td>
+              <td>149</td>
+              <td>159</td>
+              <td>1.07</td>
+            </tr>
+            <tr>
+              <td class="school" rowspan="3">小松島</td>
+              <td>普通</td>
+              <td>154</td>
+              <td>156</td>
+              <td>1.01</td>
+            </tr>
+            <tr>
+              <td>商業</td>
+              <td>38</td>
+              <td>41</td>
+              <td>1.08</td>
+            </tr>
+            <tr>
+              <td>食物</td>
+              <td>64</td>
+              <td>65</td>
+              <td>1.02</td>
+            </tr>
+            <tr>
+              <td class="school" rowspan="3">小松島西</td>
+              <td>生活文化</td>
+              <td>20</td>
+              <td>20</td>
+              <td>1.00</td>
+            </tr>
+            <tr>
+              <td>福祉</td>
+              <td>30</td>
+              <td>34</td>
+              <td>1.13</td>
+            </tr>
+            <tr>
+              <td>応用生産</td>
+              <td>12</td>
+              <td>11</td>
+              <td class="low">0.92</td>
+            </tr>
+            <tr>
+              <td class="school">小松島西・勝浦</td>
+              <td>園芸福祉</td>
+              <td>13</td>
+              <td>6</td>
+              <td class="low">0.46</td>
+            </tr>
+            <tr>
+              <td class="school" rowspan="2">富岡西</td>
+              <td>普通</td>
+              <td>73</td>
+              <td>59</td>
+              <td class="low">0.81</td>
+            </tr>
+            <tr>
+              <td>理数</td>
+              <td>30</td>
+              <td>18</td>
+              <td class="low">0.60</td>
+            </tr>
+            <tr>
+              <td class="school" rowspan="2">富岡東</td>
+              <td>普通</td>
+              <td>147</td>
+              <td>159</td>
+              <td>1.08</td>
+            </tr>
+            <tr>
+              <td>商業</td>
+              <td>17</td>
+              <td>19</td>
+              <td>1.12</td>
+            </tr>
+            <tr>
+              <td class="school">富岡東・羽ノ浦</td>
+              <td>看護</td>
+              <td>33</td>
+              <td>30</td>
+              <td class="low">0.91</td>
+            </tr>
+            <tr>
+              <td class="school">鳴門</td>
+              <td>普通</td>
+              <td>236</td>
+              <td>238</td>
+              <td>1.01</td>
+            </tr>
+            <tr>
+              <td class="school">鳴門渦潮</td>
+              <td>総合</td>
+              <td>108</td>
+              <td>130</td>
+              <td class="high">1.20</td>
+            </tr>
+            <tr>
+              <td class="school">板野</td>
+              <td>普通</td>
+              <td>118</td>
+              <td>137</td>
+              <td class="high">1.16</td>
+            </tr>
+            <tr>
+              <td class="school" rowspan="4">名西</td>
+              <td>普通</td>
+              <td>56</td>
+              <td>55</td>
+              <td class="low">0.98</td>
+            </tr>
+            <tr>
+              <td>芸術（音楽）</td>
+              <td>4</td>
+              <td>2</td>
+              <td class="low">0.50</td>
+            </tr>
+            <tr>
+              <td>芸術（美術）</td>
+              <td>0</td>
+              <td>－</td>
+              <td>－</td>
+            </tr>
+            <tr>
+              <td>芸術（書道）</td>
+              <td>0</td>
+              <td>－</td>
+              <td>－</td>
+            </tr>
+            <tr>
+              <td class="school" rowspan="5">吉野川</td>
+              <td>農業科学</td>
+              <td>12</td>
+              <td>18</td>
+              <td class="high">1.50</td>
+            </tr>
+            <tr>
+              <td>生物活用</td>
+              <td>15</td>
+              <td>15</td>
+              <td>1.00</td>
+            </tr>
+            <tr>
+              <td>会計ビジネス</td>
+              <td>20</td>
+              <td>16</td>
+              <td class="low">0.80</td>
+            </tr>
+            <tr>
+              <td>情報ビジネス</td>
+              <td>19</td>
+              <td>19</td>
+              <td>1.00</td>
+            </tr>
+            <tr>
+              <td>食ビジネス</td>
+              <td>23</td>
+              <td>22</td>
+              <td class="low">0.96</td>
+            </tr>
+            <tr>
+              <td class="school">川島</td>
+              <td>普通</td>
+              <td>61</td>
+              <td>61</td>
+              <td>1.00</td>
+            </tr>
+            <tr>
+              <td class="school">阿波</td>
+              <td>普通</td>
+              <td>131</td>
+              <td>131</td>
+              <td>1.00</td>
+            </tr>
+            <tr>
+              <td class="school">阿波西</td>
+              <td>普通</td>
+              <td>20</td>
+              <td>15</td>
+              <td class="low">0.75</td>
+            </tr>
+            <tr>
+              <td class="school">穴吹</td>
+              <td>普通</td>
+              <td>38</td>
+              <td>42</td>
+              <td>1.11</td>
+            </tr>
+            <tr>
+              <td class="school" rowspan="3">脇町</td>
+              <td>普通</td>
+              <td>158</td>
+              <td>156</td>
+              <td class="low">0.99</td>
+            </tr>
+            <tr>
+              <td>電気</td>
+              <td>33</td>
+              <td>33</td>
+              <td>1.00</td>
+            </tr>
+            <tr>
+              <td>機械</td>
+              <td>34</td>
+              <td>34</td>
+              <td>1.00</td>
+            </tr>
+            <tr>
+              <td class="school" rowspan="3">つるぎ</td>
+              <td>建設</td>
+              <td>15</td>
+              <td>13</td>
+              <td class="low">0.87</td>
+            </tr>
+            <tr>
+              <td>商業</td>
+              <td>24</td>
+              <td>23</td>
+              <td class="low">0.96</td>
+            </tr>
+            <tr>
+              <td>地域ビジネス</td>
+              <td>19</td>
+              <td>17</td>
+              <td class="low">0.89</td>
+            </tr>
+            <tr>
+              <td class="school" rowspan="2">池田</td>
+              <td>普通</td>
+              <td>101</td>
+              <td>78</td>
+              <td class="low">0.77</td>
+            </tr>
+            <tr>
+              <td>探究</td>
+              <td>35</td>
+              <td>34</td>
+              <td class="low">0.97</td>
+            </tr>
+            <tr>
+              <td class="school" rowspan="2">池田・辻</td>
+              <td>総合</td>
+              <td>41</td>
+              <td>25</td>
+              <td class="low">0.61</td>
+            </tr>
+            <tr>
+              <td>食農科学</td>
+              <td>20</td>
+              <td>19</td>
+              <td class="low">0.95</td>
+            </tr>
+            <tr>
+              <td class="school">池田・三好</td>
+              <td>環境資源</td>
+              <td>15</td>
+              <td>4</td>
+              <td class="low">0.27</td>
+            </tr>
+            <tr>
+              <td class="school" rowspan="5">阿南光</td>
+              <td>機械ロボットシステム</td>
+              <td>25</td>
+              <td>28</td>
+              <td>1.12</td>
+            </tr>
+            <tr>
+              <td>電気情報システム</td>
+              <td>23</td>
+              <td>22</td>
+              <td class="low">0.96</td>
+            </tr>
+            <tr>
+              <td>都市環境システム</td>
+              <td>25</td>
+              <td>31</td>
+              <td class="high">1.24</td>
+            </tr>
+            <tr>
+              <td>産業創造</td>
+              <td>64</td>
+              <td>75</td>
+              <td>1.17</td>
+            </tr>
+            <tr>
+              <td>普通</td>
+              <td>29</td>
+              <td>26</td>
+              <td class="low">0.90</td>
+            </tr>
+            <tr>
+              <td class="school">那賀</td>
+              <td>森林クリエイト</td>
+              <td>13</td>
+              <td>9</td>
+              <td class="low">0.69</td>
+            </tr>
+            <tr>
+              <td class="school" rowspan="2">海部</td>
+              <td>情報ビジネス</td>
+              <td>18</td>
+              <td>20</td>
+              <td>1.11</td>
+            </tr>
+            <tr>
+              <td>数理科学</td>
+              <td>28</td>
+              <td>22</td>
+              <td class="low">0.79</td>
+            </tr>
+            <tr style="background:var(--header-bg);font-weight:500">
+              <td colspan="2">合　計</td>
+              <td>4,164</td>
+              <td>4,166</td>
+              <td>1.00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ===== 定時制 ===== -->
+    <div class="section">
+      <div class="section-title">定時制課程</div>
+      <div class="section-body">
+        <table>
+          <thead>
+            <tr>
+              <th>学校</th>
+              <th>学科</th>
+              <th>募集目標</th>
+              <th>出願</th>
+              <th>倍率</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="school" rowspan="2">徳島科学技術</td>
+              <td>機械類</td>
+              <td>20</td>
+              <td>6</td>
+              <td class="low">0.30</td>
+            </tr>
+            <tr>
+              <td>工業技術類</td>
+              <td>20</td>
+              <td>7</td>
+              <td class="low">0.35</td>
+            </tr>
+            <tr>
+              <td class="school" rowspan="3">徳島中央</td>
+              <td>普通（昼間部午前）</td>
+              <td>60</td>
+              <td>49</td>
+              <td class="low">0.82</td>
+            </tr>
+            <tr>
+              <td>普通（昼間部午後）</td>
+              <td>30</td>
+              <td>18</td>
+              <td class="low">0.60</td>
+            </tr>
+            <tr>
+              <td>普通（夜間部）</td>
+              <td>20</td>
+              <td>5</td>
+              <td class="low">0.25</td>
+            </tr>
+            <tr>
+              <td class="school">富岡東</td>
+              <td>普通</td>
+              <td>15</td>
+              <td>4</td>
+              <td class="low">0.27</td>
+            </tr>
+            <tr>
+              <td class="school">鳴門</td>
+              <td>普通</td>
+              <td>20</td>
+              <td>9</td>
+              <td class="low">0.45</td>
+            </tr>
+            <tr>
+              <td class="school">名西</td>
+              <td>普通</td>
+              <td>15</td>
+              <td>11</td>
+              <td class="low">0.73</td>
+            </tr>
+            <tr>
+              <td class="school">池田</td>
+              <td>普通</td>
+              <td>10</td>
+              <td>2</td>
+              <td class="low">0.20</td>
+            </tr>
+            <tr>
+              <td class="school">海部</td>
+              <td>情報ビジネス</td>
+              <td>18</td>
+              <td>20</td>
+              <td>1.11</td>
+            </tr>
+            <tr>
+              <td class="school">那賀</td>
+              <td>森林クリエイト</td>
+              <td>13</td>
+              <td>9</td>
+              <td class="low">0.69</td>
+            </tr>
+            <tr>
+              <td class="school">鳴門渦潮</td>
+              <td>普通</td>
+              <td>47</td>
+              <td>41</td>
+              <td class="low">0.87</td>
+            </tr>
+            <tr style="background:var(--header-bg);font-weight:500">
+              <td colspan="2">合　計</td>
+              <td>210</td>
+              <td>111</td>
+              <td>0.53</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ===== 志願変更予測 ===== -->
+    <div class="section">
+      <div class="section-title">志願変更の予測と過去の傾向</div>
+      <div class="section-body">
+        <h3>令和7年度（昨年）の志願変更の動き</h3>
+        <div class="note alert">
+          <div class="note-title">昨年の主な変動（確定倍率）</div>
+          <ul>
+            <li>全体：志願変更前0.99倍 → 確定0.99倍（変動なし）</li>
+            <li>城東・普通：志願変更後に <strong>1.02倍</strong> に上昇</li>
+            <li>徳島北・普通：確定時に <strong>1.10倍</strong> まで大幅上昇</li>
+            <li>城北・普通：<strong>1.09倍</strong> で確定</li>
+            <li>城南・応用数理：<strong>0.76倍</strong> のまま変動少なく確定</li>
+          </ul>
+        </div>
+
+        <h3>令和6年度（一昨年）の志願変更の動き</h3>
+        <div class="note">
+          <div class="note-title">一昨年の状況</div>
+          <ul>
+            <li>全体：1.01倍 → 確定1.00倍（微減）</li>
+            <li>城東・普通：1.00倍で安定</li>
+            <li>城南・普通：<strong>1.06倍</strong> で安定</li>
+            <li>徳島北・普通：1.02倍 → 確定でやや上昇</li>
+            <li>徳島市立・普通：確定 <strong>1.08倍</strong></li>
+          </ul>
+        </div>
+
+        <h3>今年度（R8）の志願変更予測</h3>
+        <div class="note caution">
+          <div class="note-title">⚠ 予測される動き</div>
+          <ul>
+            <li><strong>板野・普通（1.16倍）</strong>：一部が近隣の同レベル帯の他校へ志願変更する可能性あり。</li>
+            <li><strong>城東・普通（0.97倍）</strong>：定員割れで志願変更の流入先候補。昨年も変更後に上昇した実績あり。</li>
+            <li><strong>吉野川・農業科学（1.50倍）</strong>：定員12名のため数名の減でも大きく変動。</li>
+            <li><strong>鳴門渦潮・総合（1.20倍）</strong>：大規模（108名募集）のため動きにくいが、一部流出の可能性あり。</li>
+            <li><strong>理数系学科全般</strong>：城南応用数理(0.75)・城北理数科学(0.78)・富岡東理数(0.60)など定員割れ学科への流入も考えられる。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 学区外 ===== -->
+    <div class="section">
+      <div class="section-title">学区外出願状況（全日制・普通科）</div>
+      <div class="section-body">
+        <table>
+          <thead>
+            <tr>
+              <th>学区</th>
+              <th>学校</th>
+              <th>合格許容数</th>
+              <th>出願者数</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="school">第1学区</td>
+              <td></td>
+              <td><strong>89</strong></td>
+              <td><strong>53</strong></td>
+            </tr>
+            <tr>
+              <td class="school">第2学区</td>
+              <td></td>
+              <td><strong>128</strong></td>
+              <td><strong>39</strong></td>
+            </tr>
+            <tr>
+              <td rowspan="4" class="school">第3学区</td>
+              <td>城南</td>
+              <td>29</td>
+              <td>32</td>
+            </tr>
+            <tr>
+              <td>城北</td>
+              <td>31</td>
+              <td>34</td>
+            </tr>
+            <tr>
+              <td>徳島北</td>
+              <td>28</td>
+              <td>31</td>
+            </tr>
+            <tr>
+              <td>徳島市立</td>
+              <td>19</td>
+              <td>17</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note">
+          <div class="note-title">所感</div>
+          第1学区は合格許容数89人に対し出願者数53人、第2学区は許容数128人に対し出願者39人と、いずれも許容枠内に収まっています。第3学区では城南・城北・徳島北で出願者数が合格許容数を上回っており、学区外からの人気の高さがうかがえます。
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      出典：徳島県教育委員会「令和8年度 徳島県公立高等学校一般選抜出願状況（2月18日現在）」<br>
+      過去データ：各年度の徳島県教育委員会発表資料、Benesse、ReseMom等の報道より<br>
+      ※ 志願変更予測は過去の傾向に基づくものであり、実際の結果を保証するものではありません。<br>
+      最終更新：令和8年2月19日
+    </footer>
+
+  </div>
+
+  <script>
+    function setView(mode) {
+      const btns = document.querySelectorAll('.view-toggle button');
+      if (mode === 'mobile') {
+        document.body.classList.add('mobile-view');
+        btns[0].classList.remove('active');
+        btns[1].classList.add('active');
+      } else {
+        document.body.classList.remove('mobile-view');
+        btns[0].classList.add('active');
+        btns[1].classList.remove('active');
+      }
+    }
+    // 画面幅に応じて初期表示を切替
+    if (window.innerWidth <= 640) setView('mobile');
+  </script>
+</body>
+
+</html>
