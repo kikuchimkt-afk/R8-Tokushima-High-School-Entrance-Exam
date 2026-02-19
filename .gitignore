@@ -1,0 +1,7 @@
+node_modules/
+*.pdf
+extract_pdf.js
+verify_schools.mjs
+package.json
+package-lock.json
+Insta/

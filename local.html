@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>徳島市・鳴門・板野エリア ─ 出願状況詳細</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #faf8f5;
+            --card: #ffffff;
+            --text: #2c2c2c;
+            --sub: #666;
+            --accent: #b8432f;
+            --accent2: #1a5c3a;
+            --border: #d5cfc7;
+            --header-bg: #f0ece6;
+            --table-stripe: #f7f5f1;
+            --blue: #2d5a8c;
+            --warn: #c47800;
+            --safe: #1a7a45;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 15px;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 30px 0 10px;
+            border-bottom: 3px double var(--border);
+            margin-bottom: 20px;
+        }
+
+        .page-header h1 {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .page-header .date-line {
+            font-size: 0.9rem;
+            color: var(--sub);
+            margin-top: 8px;
+        }
+
+        .page-header .date-line a {
+            color: var(--blue);
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--blue);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            margin-bottom: 16px;
+            padding: 6px 14px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--header-bg);
+        }
+
+        .section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .section-title {
+            background: var(--header-bg);
+            font-family: 'Noto Serif JP', serif;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 12px 18px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-body {
+            padding: 18px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        th,
+        td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #e8e4de;
+            text-align: center;
+        }
+
+        th {
+            background: var(--header-bg);
+            font-weight: 500;
+            font-size: 0.8rem;
+            color: var(--sub);
+            white-space: nowrap;
+        }
+
+        td.school {
+            font-weight: 500;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        td.high {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        td.low {
+            color: var(--safe);
+            font-weight: 500;
+        }
+
+        tbody tr:nth-child(even) {
+            background: var(--table-stripe);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .tag-danger {
+            background: #fde8e4;
+            color: var(--accent);
+        }
+
+        .tag-warn {
+            background: #fff3e0;
+            color: var(--warn);
+        }
+
+        .tag-safe {
+            background: #e6f4ea;
+            color: var(--safe);
+        }
+
+        .tag-neutral {
+            background: #e8edf2;
+            color: var(--blue);
+        }
+
+        .note {
+            background: #f4f6f8;
+            border-left: 4px solid var(--blue);
+            padding: 14px 18px;
+            margin-top: 16px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.88rem;
+            line-height: 1.9;
+        }
+
+        .note.caution {
+            background: #fef8f0;
+            border-left-color: var(--warn);
+        }
+
+        .note.alert {
+            background: #fdf2f0;
+            border-left-color: var(--accent);
+        }
+
+        .note-title {
+            font-weight: 700;
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+        }
+
+        .note ul {
+            margin-left: 1.2em;
+            margin-top: 4px;
+        }
+
+        .note li {
+            margin-bottom: 4px;
+        }
+
+        /* 学校カード */
+        .school-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .school-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--header-bg);
+            padding: 12px 18px;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        .school-card-header h3 {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .school-card-header .overall-rate {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .school-card-header .overall-rate.high {
+            color: var(--accent);
+        }
+
+        .school-card-header .overall-rate.low {
+            color: var(--safe);
+        }
+
+        .school-card-header .overall-rate.normal {
+            color: var(--blue);
+        }
+
+        .school-card-body {
+            padding: 16px 18px;
+        }
+
+        .school-card-body table {
+            margin-bottom: 12px;
+        }
+
+        .school-card-body .analysis {
+            font-size: 0.88rem;
+            line-height: 1.9;
+            color: var(--text);
+            padding: 10px 14px;
+            background: #f9f7f4;
+            border-radius: 8px;
+            border: 1px solid #ece8e1;
+        }
+
+        .school-card-body .analysis strong {
+            color: var(--accent);
+        }
+
+        .school-card-body .analysis .safe {
+            color: var(--safe);
+        }
+
+        .school-card-body .analysis .warn {
+            color: var(--warn);
+        }
+
+        /* 概況 */
+        .area-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .summary-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .summary-item .label {
+            font-size: 0.8rem;
+            color: var(--sub);
+            margin-bottom: 4px;
+        }
+
+        .summary-item .num {
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        .summary-item .num small {
+            font-size: 0.6em;
+        }
+
+        .summary-item .detail {
+            font-size: 0.78rem;
+            color: var(--sub);
+            margin-top: 2px;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--sub);
+            border-top: 1px solid var(--border);
+            line-height: 1.8;
+        }
+
+        .view-toggle {
+            text-align: right;
+            margin-bottom: 16px;
+        }
+
+        .view-toggle button {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 6px 16px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            cursor: pointer;
+            margin-left: 6px;
+            color: var(--sub);
+            transition: all 0.2s;
+        }
+
+        .view-toggle button.active {
+            background: var(--text);
+            color: #fff;
+            border-color: var(--text);
+        }
+
+        body.mobile-view table {
+            font-size: 0.8rem;
+        }
+
+        body.mobile-view th,
+        body.mobile-view td {
+            padding: 6px 8px;
+        }
+
+        body.mobile-view .section-title {
+            font-size: 0.9rem;
+            padding: 10px 14px;
+        }
+
+        body.mobile-view .area-summary {
+            grid-template-columns: 1fr;
+        }
+
+        @media (max-width: 640px) {
+            .area-summary {
+                grid-template-columns: 1fr;
+            }
+
+            .section-body {
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 480px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <a href="index.html" class="back-link">← 全体版に戻る</a>
+
+        <div class="page-header">
+            <h1>徳島市・鳴門・板野エリア<br>出願状況 詳細分析</h1>
+            <p class="date-line">令和８年２月１８日現在（志願変更前）</p>
+            <p class="date-line" style="font-size:0.85em; margin-top:4px;">出典：<a
+                    href="https://nyuushi.tokushima-ec.ed.jp/hs_R8/R8kouhyou" target="_blank"
+                    rel="noopener">徳島県教育委員会</a></p>
+        </div>
+
+        <div class="view-toggle">
+            <button class="active" onclick="setView('pc')">PC表示</button>
+            <button onclick="setView('mobile')">モバイル表示</button>
+        </div>
+
+        <!-- ===== エリア概況 ===== -->
+        <div class="section">
+            <div class="section-title">エリア概況 ─ 対象12校</div>
+            <div class="section-body">
+                <div class="area-summary">
+                    <div class="summary-item">
+                        <div class="label">対象校数</div>
+                        <div class="num">12<small>校</small></div>
+                        <div class="detail">（分校含む）</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="label">総募集人員</div>
+                        <div class="num">2,202<small>人</small></div>
+                        <div class="detail">全日制 全体の52.9%</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="label">総出願者数</div>
+                        <div class="num">2,276<small>人</small></div>
+                        <div class="detail">エリア倍率 1.03倍</div>
+                    </div>
+                </div>
+                <div class="note">
+                    <div class="note-title">エリア総評</div>
+                    徳島市内を中心とした主要12校エリアの倍率は1.03倍と、県全体（1.00倍）を上回っています。普通科進学校は城東を除き1.01〜1.06倍と比較的安定していますが、板野・普通が1.16倍と突出しています。専門学科は城西が全学科で定員超過、徳島商業も堅調な一方、理数系学科は軒並み定員割れの傾向です。
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== 一覧テーブル ===== -->
+        <div class="section">
+            <div class="section-title">全学科一覧</div>
+            <div class="section-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>学校</th>
+                            <th>学科・類</th>
+                            <th>募集</th>
+                            <th>出願</th>
+                            <th>倍率</th>
+                            <th>状況</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="school">城東</td>
+                            <td>普通</td>
+                            <td>251</td>
+                            <td>243</td>
+                            <td>0.97</td>
+                            <td><span class="tag tag-neutral">定員割れ</span></td>
+                        </tr>
+                        <tr>
+                            <td class="school" rowspan="2">城南</td>
+                            <td>普通</td>
+                            <td>210</td>
+                            <td>220</td>
+                            <td>1.05</td>
+                            <td><span class="tag tag-warn">やや高</span></td>
+                        </tr>
+                        <tr>
+                            <td>応用数理</td>
+                            <td>28</td>
+                            <td>21</td>
+                            <td class="low">0.75</td>
+                            <td><span class="tag tag-safe">割れ</span></td>
+                        </tr>
+                        <tr>
+                            <td class="school" rowspan="2">城北</td>
+                            <td>普通</td>
+                            <td>217</td>
+                            <td>230</td>
+                            <td>1.06</td>
+                            <td><span class="tag tag-warn">やや高</span></td>
+                        </tr>
+                        <tr>
+                            <td>理数科学</td>
+                            <td>27</td>
+                            <td>21</td>
+                            <td class="low">0.78</td>
+                            <td><span class="tag tag-safe">割れ</span></td>
+                        </tr>
+                        <tr>
+                            <td class="school" rowspan="2">徳島北</td>
+                            <td>普通</td>
+                            <td>214</td>
+                            <td>216</td>
+                            <td>1.01</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>国際英語</td>
+                            <td>38</td>
+                            <td>35</td>
+                            <td class="low">0.92</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="school" rowspan="2">徳島市立</td>
+                            <td>普通</td>
+                            <td>248</td>
+                            <td>255</td>
+                            <td>1.03</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>理数</td>
+                            <td>40</td>
+                            <td>32</td>
+                            <td class="low">0.80</td>
+                            <td><span class="tag tag-safe">割れ</span></td>
+                        </tr>
+                        <tr>
+                            <td class="school" rowspan="5">城西</td>
+                            <td>生産技術</td>
+                            <td>18</td>
+                            <td>25</td>
+                            <td class="high">1.39</td>
+                            <td><span class="tag tag-danger">激戦</span></td>
+                        </tr>
+                        <tr>
+                            <td>植物活用</td>
+                            <td>20</td>
+                            <td>24</td>
+                            <td class="high">1.20</td>
+                            <td><span class="tag tag-danger">高倍率</span></td>
+                        </tr>
+                        <tr>
+                            <td>食品科学</td>
+                            <td>24</td>
+                            <td>27</td>
+                            <td>1.13</td>
+                            <td><span class="tag tag-warn">やや高</span></td>
+                        </tr>
+                        <tr>
+                            <td>アグリビジネス</td>
+                            <td>24</td>
+                            <td>27</td>
+                            <td>1.13</td>
+                            <td><span class="tag tag-warn">やや高</span></td>
+                        </tr>
+                        <tr>
+                            <td>総合</td>
+                            <td>62</td>
+                            <td>77</td>
+                            <td class="high">1.24</td>
+                            <td><span class="tag tag-danger">高倍率</span></td>
+                        </tr>
+                        <tr>
+                            <td class="school" rowspan="6">徳島科学技術</td>
+                            <td>総合科学類</td>
+                            <td>54</td>
+                            <td>57</td>
+                            <td>1.06</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>機械技術類</td>
+                            <td>56</td>
+                            <td>52</td>
+                            <td class="low">0.93</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>電気技術類</td>
+                            <td>53</td>
+                            <td>46</td>
+                            <td class="low">0.87</td>
+                            <td><span class="tag tag-safe">割れ</span></td>
+                        </tr>
+                        <tr>
+                            <td>建設技術類</td>
+                            <td>62</td>
+                            <td>58</td>
+                            <td class="low">0.94</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>海洋科学類</td>
+                            <td>10</td>
+                            <td>13</td>
+                            <td class="high">1.30</td>
+                            <td><span class="tag tag-danger">高倍率</span></td>
+                        </tr>
+                        <tr>
+                            <td>海洋技術類</td>
+                            <td>18</td>
+                            <td>16</td>
+                            <td class="low">0.89</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="school" rowspan="2">徳島商業</td>
+                            <td>ビジネス探究</td>
+                            <td>56</td>
+                            <td>57</td>
+                            <td>1.02</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>ビジネス創造</td>
+                            <td>149</td>
+                            <td>159</td>
+                            <td>1.07</td>
+                            <td><span class="tag tag-warn">やや高</span></td>
+                        </tr>
+                        <tr>
+                            <td class="school">鳴門</td>
+                            <td>普通</td>
+                            <td>236</td>
+                            <td>238</td>
+                            <td>1.01</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="school">鳴門渦潮</td>
+                            <td>総合</td>
+                            <td>108</td>
+                            <td>130</td>
+                            <td class="high">1.20</td>
+                            <td><span class="tag tag-danger">高倍率</span></td>
+                        </tr>
+                        <tr>
+                            <td class="school">板野</td>
+                            <td>普通</td>
+                            <td>118</td>
+                            <td>137</td>
+                            <td class="high">1.16</td>
+                            <td><span class="tag tag-danger">高倍率</span></td>
+                        </tr>
+                        <tr>
+                            <td class="school">阿波</td>
+                            <td>普通</td>
+                            <td>131</td>
+                            <td>131</td>
+                            <td>1.00</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ===== 学校別分析 ===== -->
+        <div class="section">
+            <div class="section-title">学校別 深掘り分析</div>
+            <div class="section-body">
+
+                <!-- 城東 -->
+                <div class="school-card">
+                    <div class="school-card-header">
+                        <h3>🏫 城東高校</h3>
+                        <span class="overall-rate low">0.97倍</span>
+                    </div>
+                    <div class="school-card-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>学科</th>
+                                    <th>募集</th>
+                                    <th>出願</th>
+                                    <th>倍率</th>
+                                    <th>R7確定</th>
+                                    <th>R6確定</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>普通</td>
+                                    <td>251</td>
+                                    <td>243</td>
+                                    <td>0.97</td>
+                                    <td>1.02</td>
+                                    <td>1.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="analysis">
+                            <strong>⚠
+                                定員割れ</strong>（8名不足）。ただし、昨年も出願時0.99倍→確定1.02倍へ上昇した実績があり、<strong>志願変更で流入する可能性大</strong>。県内トップ校のため、近隣校から「挑戦層」の流入が見込まれます。確定時には定員充足する可能性が高いです。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 城南 -->
+                <div class="school-card">
+                    <div class="school-card-header">
+                        <h3>🏫 城南高校</h3>
+                        <span class="overall-rate normal">1.05倍</span>
+                    </div>
+                    <div class="school-card-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>学科</th>
+                                    <th>募集</th>
+                                    <th>出願</th>
+                                    <th>倍率</th>
+                                    <th>R7確定</th>
+                                    <th>R6確定</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>普通</td>
+                                    <td>210</td>
+                                    <td>220</td>
+                                    <td>1.05</td>
+                                    <td>1.06</td>
+                                    <td>1.06</td>
+                                </tr>
+                                <tr>
+                                    <td>応用数理</td>
+                                    <td>28</td>
+                                    <td>21</td>
+                                    <td class="low">0.75</td>
+                                    <td>0.76</td>
+                                    <td>─</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="analysis">
+                            普通科は<span
+                                class="safe">3年連続1.05〜1.06倍で極めて安定</span>。志願変更の影響は小さいと予測。応用数理は<strong>0.75倍と定員割れ</strong>が継続（昨年0.76倍）。理数系離れの傾向が顕著です。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 城北 -->
+                <div class="school-card">
+                    <div class="school-card-header">
+                        <h3>🏫 城北高校</h3>
+                        <span class="overall-rate normal">1.06倍</span>
+                    </div>
+                    <div class="school-card-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>学科</th>
+                                    <th>募集</th>
+                                    <th>出願</th>
+                                    <th>倍率</th>
+                                    <th>R7確定</th>
+                                    <th>R6確定</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>普通</td>
+                                    <td>217</td>
+                                    <td>230</td>
+                                    <td>1.06</td>
+                                    <td>1.09</td>
+                                    <td>─</td>
+                                </tr>
+                                <tr>
+                                    <td>理数科学</td>
+                                    <td>27</td>
+                                    <td>21</td>
+                                    <td class="low">0.78</td>
+                                    <td>─</td>
+                                    <td>─</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="analysis">
+                            普通科は1.06倍で昨年確定時（1.09倍）よりやや低下。理数科学は<strong>0.78倍と定員割れ</strong>。城南・応用数理と同様に理数系学科の不人気が目立ちます。普通科は志願変更で若干の変動がありえますが、大きな乱れはないと予測。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 徳島北 -->
+                <div class="school-card">
+                    <div class="school-card-header">
+                        <h3>🏫 徳島北高校</h3>
+                        <span class="overall-rate normal">1.01倍</span>
+                    </div>
+                    <div class="school-card-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>学科</th>
+                                    <th>募集</th>
+                                    <th>出願</th>
+                                    <th>倍率</th>
+                                    <th>R7確定</th>
+                                    <th>R6確定</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>普通</td>
+                                    <td>214</td>
+                                    <td>216</td>
+                                    <td>1.01</td>
+                                    <td>1.10</td>
+                                    <td>─</td>
+                                </tr>
+                                <tr>
+                                    <td>国際英語</td>
+                                    <td>38</td>
+                                    <td>35</td>
+                                    <td class="low">0.92</td>
+                                    <td>─</td>
+                                    <td>─</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="analysis">
+                            <strong>⚠ 要注目</strong>。普通科は出願時1.01倍だが、<span
+                                class="warn">昨年は確定時に1.10倍まで大幅上昇</span>した実績あり。志願変更で同様の動きが起きる可能性があります。国際英語は0.92倍で定員割れ。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 徳島市立 -->
+                <div class="school-card">
+                    <div class="school-card-header">
+                        <h3>🏫 徳島市立高校</h3>
+                        <span class="overall-rate normal">1.03倍</span>
+                    </div>
+                    <div class="school-card-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>学科</th>
+                                    <th>募集</th>
+                                    <th>出願</th>
+                                    <th>倍率</th>
+                                    <th>R7確定</th>
+                                    <th>R6確定</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>普通</td>
+                                    <td>248</td>
+                                    <td>255</td>
+                                    <td>1.03</td>
+                                    <td>─</td>
+                                    <td>1.08</td>
+                                </tr>
+                                <tr>
+                                    <td>理数</td>
+                                    <td>40</td>
+                                    <td>32</td>
+                                    <td class="low">0.80</td>
+                                    <td>─</td>
+                                    <td>─</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="analysis">
+                            普通科は1.03倍で一昨年の確定時（1.08倍）より低下。理数は<strong>0.80倍と定員割れ</strong>で、他校理数系と同じ傾向。普通科は志願変更で若干上昇する可能性があります。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 城西 -->
+                <div class="school-card">
+                    <div class="school-card-header">
+                        <h3>🏫 城西高校</h3>
+                        <span class="overall-rate high">全学科 定員超過</span>
+                    </div>
+                    <div class="school-card-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>学科</th>
+                                    <th>募集</th>
+                                    <th>出願</th>
+                                    <th>倍率</th>
+                                    <th>超過</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>生産技術</td>
+                                    <td>18</td>
+                                    <td>25</td>
+                                    <td class="high">1.39</td>
+                                    <td>+7</td>
+                                </tr>
+                                <tr>
+                                    <td>植物活用</td>
+                                    <td>20</td>
+                                    <td>24</td>
+                                    <td class="high">1.20</td>
+                                    <td>+4</td>
+                                </tr>
+                                <tr>
+                                    <td>食品科学</td>
+                                    <td>24</td>
+                                    <td>27</td>
+                                    <td>1.13</td>
+                                    <td>+3</td>
+                                </tr>
+                                <tr>
+                                    <td>アグリビジネス</td>
+                                    <td>24</td>
+                                    <td>27</td>
+                                    <td>1.13</td>
+                                    <td>+3</td>
+                                </tr>
+                                <tr>
+                                    <td>総合</td>
+                                    <td>62</td>
+                                    <td>77</td>
+                                    <td class="high">1.24</td>
+                                    <td>+15</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="analysis">
+                            <strong>⚠
+                                全5学科で定員超過</strong>という異例の人気。特に生産技術（1.39倍）と総合（1.24倍）は激戦。生産技術は定員18名に対し7名超過で、志願変更期間中に一部が<span
+                                class="warn">同系の吉野川・農業科学等へ流出する可能性</span>があります。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 徳島科学技術 -->
+                <div class="school-card">
+                    <div class="school-card-header">
+                        <h3>🏫 徳島科学技術高校</h3>
+                        <span class="overall-rate normal">0.96倍</span>
+                    </div>
+                    <div class="school-card-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>学科・類</th>
+                                    <th>募集</th>
+                                    <th>出願</th>
+                                    <th>倍率</th>
+                                    <th>過不足</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>総合科学類</td>
+                                    <td>54</td>
+                                    <td>57</td>
+                                    <td>1.06</td>
+                                    <td>+3</td>
+                                </tr>
+                                <tr>
+                                    <td>機械技術類</td>
+                                    <td>56</td>
+                                    <td>52</td>
+                                    <td class="low">0.93</td>
+                                    <td>-4</td>
+                                </tr>
+                                <tr>
+                                    <td>電気技術類</td>
+                                    <td>53</td>
+                                    <td>46</td>
+                                    <td class="low">0.87</td>
+                                    <td>-7</td>
+                                </tr>
+                                <tr>
+                                    <td>建設技術類</td>
+                                    <td>62</td>
+                                    <td>58</td>
+                                    <td class="low">0.94</td>
+                                    <td>-4</td>
+                                </tr>
+                                <tr>
+                                    <td>海洋科学類</td>
+                                    <td>10</td>
+                                    <td>13</td>
+                                    <td class="high">1.30</td>
+                                    <td>+3</td>
+                                </tr>
+                                <tr>
+                                    <td>海洋技術類</td>
+                                    <td>18</td>
+                                    <td>16</td>
+                                    <td class="low">0.89</td>
+                                    <td>-2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="analysis">
+                            学科間で倍率差が大きい。海洋科学類（1.30倍）は定員10名と少数のため激戦。一方、<strong>電気技術類（0.87倍）</strong>は7名不足で最も定員割れが深刻。城西の高倍率学科からの志願変更による流入の可能性があります。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 徳島商業 -->
+                <div class="school-card">
+                    <div class="school-card-header">
+                        <h3>🏫 徳島商業高校</h3>
+                        <span class="overall-rate normal">1.05倍</span>
+                    </div>
+                    <div class="school-card-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>学科</th>
+                                    <th>募集</th>
+                                    <th>出願</th>
+                                    <th>倍率</th>
+                                    <th>超過</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ビジネス探究</td>
+                                    <td>56</td>
+                                    <td>57</td>
+                                    <td>1.02</td>
+                                    <td>+1</td>
+                                </tr>
+                                <tr>
+                                    <td>ビジネス創造</td>
+                                    <td>149</td>
+                                    <td>159</td>
+                                    <td>1.07</td>
+                                    <td>+10</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="analysis">
+                            <span class="safe">両学科とも安定した倍率</span>。ビジネス創造は149名の大規模募集で1.07倍と堅実。志願変更による大きな変動は考えにくい状況です。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 鳴門 -->
+                <div class="school-card">
+                    <div class="school-card-header">
+                        <h3>🏫 鳴門高校</h3>
+                        <span class="overall-rate normal">1.01倍</span>
+                    </div>
+                    <div class="school-card-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>学科</th>
+                                    <th>募集</th>
+                                    <th>出願</th>
+                                    <th>倍率</th>
+                                    <th>超過</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>普通</td>
+                                    <td>236</td>
+                                    <td>238</td>
+                                    <td>1.01</td>
+                                    <td>+2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="analysis">
+                            <span class="safe">ほぼ定員通り</span>の安定した出願状況。236名の大規模募集のため、わずか2名の超過に留まります。志願変更の影響も限定的と予測。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 鳴門渦潮 -->
+                <div class="school-card">
+                    <div class="school-card-header">
+                        <h3>🏫 鳴門渦潮高校</h3>
+                        <span class="overall-rate high">1.20倍</span>
+                    </div>
+                    <div class="school-card-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>学科</th>
+                                    <th>募集</th>
+                                    <th>出願</th>
+                                    <th>倍率</th>
+                                    <th>超過</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>総合</td>
+                                    <td>108</td>
+                                    <td>130</td>
+                                    <td class="high">1.20</td>
+                                    <td>+22</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="analysis">
+                            <strong>⚠ 1.20倍の高倍率</strong>で22名の超過。108名の大規模募集のため一気に倍率は動きにくいが、<span
+                                class="warn">一部は鳴門（普通）や板野（普通）への志願変更</span>を検討する受験生がいる可能性があります。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 板野 -->
+                <div class="school-card">
+                    <div class="school-card-header">
+                        <h3>🏫 板野高校</h3>
+                        <span class="overall-rate high">1.16倍</span>
+                    </div>
+                    <div class="school-card-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>学科</th>
+                                    <th>募集</th>
+                                    <th>出願</th>
+                                    <th>倍率</th>
+                                    <th>超過</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>普通</td>
+                                    <td>118</td>
+                                    <td>137</td>
+                                    <td class="high">1.16</td>
+                                    <td>+19</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="analysis">
+                            <strong>⚠
+                                1.16倍で19名超過</strong>。エリア内普通科で城東に次ぐ規模ながら高倍率。志願変更期間中に近隣の同レベル帯の他校へ流出する動きが予想されます。一方、鳴門渦潮からの流入もありえるため、最終的な倍率動向は読みにくい状況です。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 阿波 -->
+                <div class="school-card">
+                    <div class="school-card-header">
+                        <h3>🏫 阿波高校</h3>
+                        <span class="overall-rate normal">1.00倍</span>
+                    </div>
+                    <div class="school-card-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>学科</th>
+                                    <th>募集</th>
+                                    <th>出願</th>
+                                    <th>倍率</th>
+                                    <th>過不足</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>普通</td>
+                                    <td>131</td>
+                                    <td>131</td>
+                                    <td>1.00</td>
+                                    <td>±0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="analysis">
+                            <span class="safe">募集人員＝出願者数でぴったり1.00倍</span>。志願変更で板野などの高倍率校から流入する可能性がわずかにあります。
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ===== 志願変更シミュレーション ===== -->
+        <div class="section">
+            <div class="section-title">志願変更 ─ エリア内の予測される動き</div>
+            <div class="section-body">
+                <div class="note caution">
+                    <div class="note-title">⚠ 予測される志願変更の流れ</div>
+                    <ul>
+                        <li><strong>城東（0.97倍）</strong> ← 他校から流入の可能性大。昨年も変更後に上昇。</li>
+                        <li><strong>徳島北（1.01倍）</strong> ← 昨年は確定時1.10倍まで急上昇。今年も同様の動きに注意。</li>
+                        <li><strong>板野（1.16倍）</strong> → 一部が近隣の同レベル帯の他校へ流出する可能性。</li>
+                        <li><strong>鳴門渦潮（1.20倍）</strong> → 大規模のため動きにくいが、一部流出の可能性。</li>
+                        <li><strong>城西・生産技術（1.39倍）</strong> → 高倍率のため、一部は他の農業系学科へ志願変更も。</li>
+                        <li><strong>理数系学科全般</strong> ← 城南応用数理(0.75)・城北理数科学(0.78)・徳島市立理数(0.80)は定員割れで流入先候補。</li>
+                    </ul>
+                </div>
+
+                <div class="note">
+                    <div class="note-title">📊 過年度比較（主要普通科）</div>
+                    <table style="margin-top:8px">
+                        <thead>
+                            <tr>
+                                <th>学校</th>
+                                <th>R8出願</th>
+                                <th>R7確定</th>
+                                <th>R6確定</th>
+                                <th>傾向</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="school">城東</td>
+                                <td>0.97</td>
+                                <td>1.02</td>
+                                <td>1.00</td>
+                                <td>やや低下</td>
+                            </tr>
+                            <tr>
+                                <td class="school">城南</td>
+                                <td>1.05</td>
+                                <td>1.06</td>
+                                <td>1.06</td>
+                                <td>安定</td>
+                            </tr>
+                            <tr>
+                                <td class="school">城北</td>
+                                <td>1.06</td>
+                                <td>1.09</td>
+                                <td>─</td>
+                                <td>やや低下</td>
+                            </tr>
+                            <tr>
+                                <td class="school">徳島北</td>
+                                <td>1.01</td>
+                                <td>1.10</td>
+                                <td>─</td>
+                                <td>低下</td>
+                            </tr>
+                            <tr>
+                                <td class="school">徳島市立</td>
+                                <td>1.03</td>
+                                <td>─</td>
+                                <td>1.08</td>
+                                <td>低下</td>
+                            </tr>
+                            <tr>
+                                <td class="school">鳴門</td>
+                                <td>1.01</td>
+                                <td>─</td>
+                                <td>─</td>
+                                <td>─</td>
+                            </tr>
+                            <tr>
+                                <td class="school">板野</td>
+                                <td class="high">1.16</td>
+                                <td>─</td>
+                                <td>─</td>
+                                <td>高倍率</td>
+                            </tr>
+                            <tr>
+                                <td class="school">阿波</td>
+                                <td>1.00</td>
+                                <td>─</td>
+                                <td>─</td>
+                                <td>─</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== 注目ポイント ===== -->
+        <div class="section">
+            <div class="section-title">保護者・受験生向け ─ 注目ポイント</div>
+            <div class="section-body">
+                <div class="note alert">
+                    <div class="note-title">🔴 激戦区（競争が激しい）</div>
+                    <ul>
+                        <li><strong>城西・生産技術（1.39倍）</strong>：7名が不合格になる計算。志願変更も検討材料。</li>
+                        <li><strong>城西・総合（1.24倍）</strong>：15名超過。大規模だが油断はできない。</li>
+                        <li><strong>鳴門渦潮・総合（1.20倍）</strong>：22名超過。体育系志望者が多く、志願変更しにくい傾向。</li>
+                        <li><strong>板野・普通（1.16倍）</strong>：19名超過。近年で最も高い倍率水準。</li>
+                    </ul>
+                </div>
+                <div class="note">
+                    <div class="note-title">🟢 余裕のある学校・学科（狙い目）</div>
+                    <ul>
+                        <li><strong>城東・普通（0.97倍）</strong>：定員割れだが、志願変更で上昇する可能性大。</li>
+                        <li><strong>城南・応用数理（0.75倍）</strong>：7名不足。理数好きには穴場。</li>
+                        <li><strong>城北・理数科学（0.78倍）</strong>：6名不足。</li>
+                        <li><strong>徳島市立・理数（0.80倍）</strong>：8名不足。</li>
+                        <li><strong>徳島科学技術・電気技術類（0.87倍）</strong>：7名不足で最も入りやすい。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-link">← 全体版に戻る</a>
+
+        <footer>
+            出典：徳島県教育委員会「令和8年度 徳島県公立高等学校一般選抜出願状況（2月18日現在）」<br>
+            過去データ：各年度の徳島県教育委員会発表資料より<br>
+            ※ 志願変更予測は過去の傾向に基づくものであり、実際の結果を保証するものではありません。<br>
+            最終更新：令和8年2月19日
+        </footer>
+
+    </div>
+
+    <script>
+        function setView(mode) {
+            const btns = document.querySelectorAll('.view-toggle button');
+            if (mode === 'mobile') {
+                document.body.classList.add('mobile-view');
+                btns[0].classList.remove('active');
+                btns[1].classList.add('active');
+            } else {
+                document.body.classList.remove('mobile-view');
+                btns[0].classList.add('active');
+                btns[1].classList.remove('active');
+            }
+        }
+        if (window.innerWidth <= 640) setView('mobile');
+    </script>
+</body>
+
+</html>

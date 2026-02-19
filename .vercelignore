@@ -1,0 +1,8 @@
+node_modules
+*.pdf
+*.mjs
+extract_pdf.js
+package.json
+package-lock.json
+Insta
+.gitignore
